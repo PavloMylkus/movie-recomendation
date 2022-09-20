@@ -1,0 +1,10 @@
+1. React 18
+2. Бібліотека компонентів Material UI
+3. Навігація react-router-dom v6
+4. GraphQL + Apollo
+5. Форми - React Final Form
+6. Дані - The movie database
+7. I18n - react-intl
+8. Розробка компонентів Storybook
+9. тестування - React Testing Library
+10. Deploy to production
