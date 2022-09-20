@@ -5,13 +5,17 @@ import {
 	Paper
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { MovieCard, MovieCardSelected } from '../../components';
+import {
+	MovieCard,
+	MovieCardSelected,
+	SelectedMoviesSection
+} from '../../components';
 import { useQuery } from '@apollo/client';
 import { MOVIES_QUERY } from './queries';
 import Pagination from '@mui/material/Pagination';
 import LinearProgress from '@mui/material/LinearProgress';
 import { useMovies } from '../../hooks/useMovies';
-import VideoLibraryRoundedIcon from '@mui/icons-material/VideoLibraryRounded';
+
 
 
 const SelectedMovies = styled(Paper)(({ theme }) => ({
@@ -35,6 +39,9 @@ const Home = () => {
 	const paginationHandler = (event, page) => {
 		setPage(page)
 	}
+
+
+	const pagesCount = data?.movies?.totalPages <= 500 ? data?.movies?.totalPages : 500;
 	return (
 		<Box sx={{ flexGrow: 1, marginTop: 2 }}>
 			<Grid container spacing={2}>
@@ -67,7 +74,7 @@ const Home = () => {
 
 						</Box>
 						<Box mt={2} pb={2} sx={{ display: 'flex', justifyContent: 'center' }}>
-							<Pagination count={500}
+							<Pagination count={pagesCount}
 								page={page}
 								onChange={paginationHandler} />
 						</Box>
@@ -75,15 +82,8 @@ const Home = () => {
 
 				</Grid>
 				<Grid item xs={12} md={4}>
-					<VideoLibraryRoundedIcon />
-					<SelectedMovies>
-						{selectedMovies.map((movie) => (
-							<MovieCardSelected
-								key={movie.id}
-								movie={movie}
-								onCardDelete={deleteMovie} />
-						))}
-					</SelectedMovies> &
+
+					<SelectedMoviesSection selectedMovies={selectedMovies} deleteMovie={deleteMovie} />
 				</Grid>
 			</Grid>
 		</Box>
