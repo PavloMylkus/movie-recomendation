@@ -5,11 +5,14 @@ import {
 	Paper
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { MovieCard } from '../../components';
+import { MovieCard, MovieCardSelected } from '../../components';
 import { useQuery } from '@apollo/client';
 import { MOVIES_QUERY } from './queries';
 import Pagination from '@mui/material/Pagination';
 import LinearProgress from '@mui/material/LinearProgress';
+import { useMovies } from '../../hooks/useMovies';
+import VideoLibraryRoundedIcon from '@mui/icons-material/VideoLibraryRounded';
+
 
 const SelectedMovies = styled(Paper)(({ theme }) => ({
 	backgroundColor: '#fff',
@@ -24,6 +27,7 @@ const SelectedMovies = styled(Paper)(({ theme }) => ({
 const Home = () => {
 	const [page, setPage] = useState(1);
 	const { loading, error, data } = useQuery(MOVIES_QUERY, { variables: { page } });
+	const { selectedMovies, selectMovie, deleteMovie } = useMovies();
 
 	if (error) {
 		return "Error"
@@ -54,7 +58,7 @@ const Home = () => {
 											lg={3}
 
 										>
-											<MovieCard movie={movie} />
+											<MovieCard movie={movie} onCardSelect={selectMovie} />
 										</Grid>
 									))}
 
@@ -63,7 +67,7 @@ const Home = () => {
 
 						</Box>
 						<Box mt={2} pb={2} sx={{ display: 'flex', justifyContent: 'center' }}>
-							<Pagination count={data?.movies?.totalResults}
+							<Pagination count={500}
 								page={page}
 								onChange={paginationHandler} />
 						</Box>
@@ -71,9 +75,15 @@ const Home = () => {
 
 				</Grid>
 				<Grid item xs={12} md={4}>
+					<VideoLibraryRoundedIcon />
 					<SelectedMovies>
-						Selected movies
-					</SelectedMovies>
+						{selectedMovies.map((movie) => (
+							<MovieCardSelected
+								key={movie.id}
+								movie={movie}
+								onCardDelete={deleteMovie} />
+						))}
+					</SelectedMovies> &
 				</Grid>
 			</Grid>
 		</Box>

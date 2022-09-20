@@ -13,7 +13,7 @@ type Movie{
 	id: ID!
 	title: String!
 	releaseDate( format: String): String!
-	posterPath: String
+	 posterPath: String
 	genres: [Genre]
 	adult: Boolean
 	overview: String

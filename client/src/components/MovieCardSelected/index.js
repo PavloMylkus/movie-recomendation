@@ -14,7 +14,7 @@ const MovieCardSelected = ({ movie, onCardDelete }) => {
 			<CardMedia
 				component="img"
 				sx={{ width: 100 }}
-				image={movie.image}
+				image={movie.posterPath}
 				alt={movie.title}
 			/>
 			<Box sx={{ display: 'flex', flexDirection: 'column', width: '100%', position: 'relative' }}>
@@ -33,11 +33,12 @@ const MovieCardSelected = ({ movie, onCardDelete }) => {
 						</Typography>
 					) : null}
 					<Typography variant="subtitle1" color="text.secondary" component="div">
-						Length: {movie.runtime}
+						Length: {movie.originalLanguage}
 					</Typography>
 				</Box>
 				<CardMenu>
-					<MenuItem onClick={onCardDelete}>
+
+					<MenuItem onClick={() => onCardDelete(movie)}>
 						Delete
 					</MenuItem>
 				</CardMenu>
@@ -49,7 +50,7 @@ const MovieCardSelected = ({ movie, onCardDelete }) => {
 
 MovieCardSelected.propTypes = {
 	movie: PropTypes.shape({
-		image: PropTypes.string.isRequired,
+		posterPath: PropTypes.string.isRequired,
 		title: PropTypes.string.isRequired,
 		releaseDate: PropTypes.string,
 		genres: PropTypes.arrayOf(PropTypes.shape({
