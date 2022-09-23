@@ -4,8 +4,10 @@ import MovieCardSelected from "./MovieCardSelected";
 import CardMenu from "./CardMenu";
 import SelectedMoviesForm from "./SelectedMovieForm";
 import SelectedMoviesSection from "./SelectedMovieSection";
+import ConfirmModal from "./ConfirmModal";
 
 export {
+	ConfirmModal,
 	SelectedMoviesSection,
 	SelectedMoviesForm,
 	Navigation,

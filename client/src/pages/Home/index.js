@@ -55,7 +55,7 @@ const Home = () => {
 						<Box sx={{ flexGrow: 1, marginTop: 0, padding: 1 }}>
 							{loading && <LinearProgress color="secondary" />}
 							{data && (
-								<Grid container spacing={2}>
+								<Grid container spacing={2} sx={{ padding: 1 }}>
 									{data.movies.results.map((movie) => (
 										<Grid
 											key={movie.id}
