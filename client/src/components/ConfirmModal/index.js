@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import MuiAlert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
-
+import ShareSocial from './ShareSocial';
 
 const style = {
 	position: 'absolute',
@@ -25,6 +25,8 @@ const style = {
 	boxShadow: 24,
 	p: 4,
 };
+
+
 
 const Alert = React.forwardRef(function Alert(props, ref) {
 	return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -73,7 +75,7 @@ const ConfirmModal = ({ open, url, title, onClose }) => {
 						placeholder="List URL"
 						inputProps={{ 'aria-label': 'search google maps' }}
 					/>
-					<IconButton sx={{ p: '10px' }} aria-label="preview">
+					<IconButton href={url} target='_blank' sx={{ p: '10px' }} aria-label="preview">
 						<PreviewIcon />
 					</IconButton>
 					<Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
@@ -88,15 +90,31 @@ const ConfirmModal = ({ open, url, title, onClose }) => {
 					</CopyToClipboard>
 
 				</Paper>
+				<Snackbar
+					open={openSuccess}
+					autoHideDuration={2000}
+					onClose={handleClose}
+					sx={{
+						position: 'relative',
+						marginTop: 2,
+						display: 'block',
+						top: 0,
 
+						left: '0px !important',
+						bottom: 0
+					}}>
+					<Alert
+						onClose={handleClose}
+						severity="success"
+						sx={{ left: 0 }} >
+						Copied!
+					</Alert>
+				</Snackbar>
+				<ShareSocial url={url} />
 			</Box>
 
 		</Modal>
-		<Snackbar open={openSuccess} autoHideDuration={3000} onClose={handleClose}>
-			<Alert onClose={handleClose} severity="success" sx={{ zIndex: 1301, position: 'absolute', bottom: 2 }}>
-				Copied!
-			</Alert>
-		</Snackbar>
+
 	</div>
 	);
 }
