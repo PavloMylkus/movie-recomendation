@@ -4,10 +4,8 @@ import {
 	Grid,
 	Paper
 } from '@mui/material';
-import { styled } from '@mui/material/styles';
 import {
 	MovieCard,
-	MovieCardSelected,
 	SelectedMoviesSection
 } from '../../components';
 import { useQuery } from '@apollo/client';
@@ -18,15 +16,7 @@ import { useMovies } from '../../hooks/useMovies';
 
 
 
-const SelectedMovies = styled(Paper)(({ theme }) => ({
-	backgroundColor: '#fff',
-	...theme.typography.body2,
-	padding: theme.spacing(1),
-	color: theme.palette.text.secondary,
-	height: 'calc(100vh - 140px)',
-	position: 'sticky',
-	top: theme.spacing(1)
-}));
+
 
 const Home = () => {
 	const [page, setPage] = useState(1);
@@ -41,7 +31,7 @@ const Home = () => {
 	}
 
 
-	const pagesCount = data?.movies?.totalPages <= 500 ? data?.movies?.totalPages : 500;
+	const pagesCount = data?.movies?.totalPages <= 499 ? data?.movies?.totalPages : 499;
 	return (
 		<Box sx={{ flexGrow: 1, marginTop: 2 }}>
 			<Grid container spacing={2}>
@@ -63,7 +53,6 @@ const Home = () => {
 											sm={6}
 											md={4}
 											lg={3}
-
 										>
 											<MovieCard movie={movie} onCardSelect={selectMovie} />
 										</Grid>

@@ -32,7 +32,7 @@ const AddBtn = styled(AddCircleOutlineOutlinedIcon)(({ theme }) => ({
 
 
 
-const MovieCard = ({ movie, onCardSelect }) => {
+const MovieCard = ({ movie, onCardSelect, isPreviewMode }) => {
 
 	const [checked, setChecked] = useState(false);
 
@@ -49,10 +49,7 @@ const MovieCard = ({ movie, onCardSelect }) => {
 	};
 
 	return (
-		<Card
-
-			sx={{ maxWidth: 250, position: "relative" }}>
-
+		<Card sx={{ maxWidth: 250, position: "relative" }}>
 			<Box
 				onMouseEnter={handleChangeEnter}
 				onMouseLeave={handleChangeLeave}
@@ -65,9 +62,10 @@ const MovieCard = ({ movie, onCardSelect }) => {
 					image={movie.posterPath}
 					alt={movie.title}
 				/>
-				<Fade in={checked}>
-					<AddBtn onClick={() => onCardSelect(movie)} />
-				</Fade>
+				{!isPreviewMode && (
+					<Fade in={checked}>
+						<AddBtn onClick={() => onCardSelect(movie)} />
+					</Fade>)}
 
 			</Box>
 			<CardInfo>
@@ -78,11 +76,14 @@ const MovieCard = ({ movie, onCardSelect }) => {
 				<Typography mb={0} variant="subtitle1" gutterBottom component="div">
 					{movie.releaseDate}
 				</Typography>
-				<CardMenu>
-					<MenuItem onClick={() => onCardSelect(movie)}>
-						Select
-					</MenuItem>
-				</CardMenu>
+
+				{!isPreviewMode && (
+					<CardMenu>
+						<MenuItem onClick={() => onCardSelect(movie)}>
+							Select
+						</MenuItem>
+					</CardMenu>)}
+
 			</CardInfo>
 		</Card>
 	)
@@ -94,7 +95,8 @@ MovieCard.propTypes = {
 		title: PropTypes.string.isRequired,
 		releaseDate: PropTypes.string
 	}).isRequired,
-	onCardSelect: PropTypes.func
+	onCardSelect: PropTypes.func,
+	isPreviewMode: PropTypes.bool
 }
 
 export default MovieCard;

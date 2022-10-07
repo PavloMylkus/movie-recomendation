@@ -7,7 +7,6 @@ class Movie {
 		this.movie = movie;
 		this.id = movie.id;
 		this.title = movie.title;
-
 		this.posterPath = `${IMAGE_BASE_PATH}${movie.poster_path}`;
 		this.adult = movie.adult;
 		this.overview = movie.overview;
