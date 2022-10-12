@@ -16,6 +16,7 @@ class Movie {
 		this.originalTitle = movie.original_title;
 		this.originalLanguage = movie.original_language;
 		this.video = movie.video;
+
 	}
 	releaseDate(params) {
 		try {

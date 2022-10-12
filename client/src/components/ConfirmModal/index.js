@@ -34,7 +34,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 });
 
 const ConfirmModal = ({ open, url, title, onClose }) => {
-	const [openSuccess, setOpenSuccess] = React.useState(false);
+	const [openSuccess, setOpenSuccess] = useState(false);
 
 	const handleClick = () => {
 		setOpenSuccess(true);

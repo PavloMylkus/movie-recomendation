@@ -18,8 +18,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { Link as RouterLink } from "react-router-dom";
 import { teal } from '@mui/material/colors';
-import { I18nProvider, LOCALES } from '../../i18n';
-import translate from '../../i18n/translate';
+import { LOCALES } from '../../i18n';
+
 import ButtonGroup from '@mui/material/ButtonGroup';
 import { AppContext } from '../../context/appContext';
 import { FormattedMessage } from 'react-intl';
@@ -29,7 +29,6 @@ const primary = teal[900];
 
 const Navigation = () => {
 	const [isDrawerOpen, setDrawerOpen] = useState(false);
-
 
 	const { state, dispatch } = useContext(AppContext);
 
@@ -83,6 +82,7 @@ const Navigation = () => {
 				<ListItem>
 					{SwitchLanguage()}
 				</ListItem>
+
 			</List>
 		</Box>
 

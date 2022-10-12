@@ -11,6 +11,8 @@ export const MOVIES_QUERY = gql`
       title
       releaseDate(format: "dd.MM.yyyy")
       posterPath
+	  voteCount
+	  popularity
     }
   } 
 }

@@ -19,7 +19,7 @@ import {
 import { Navigation } from './components';
 import { Home, Settings, Recommend } from './pages';
 import { AppContext } from './context/appContext';
-import { I18nProvider, LOCALES } from './i18n';
+import { I18nProvider } from './i18n';
 
 function App() {
 	const { state } = useContext(AppContext);

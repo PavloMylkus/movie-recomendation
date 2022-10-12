@@ -33,7 +33,7 @@ const Home = () => {
 
 	const pagesCount = data?.movies?.totalPages <= 499 ? data?.movies?.totalPages : 499;
 	return (
-		<Box sx={{ flexGrow: 1, marginTop: 2 }}>
+		<Box sx={{ flexGrow: 1, marginTop: 2, }}>
 			<Grid container spacing={2}>
 				<Grid item xs={12}>
 					<Paper>
@@ -42,14 +42,26 @@ const Home = () => {
 				</Grid>
 				<Grid item xs={12} md={8}>
 					<Paper>
-						<Box sx={{ flexGrow: 1, marginTop: 0, padding: 1 }}>
+						<Box sx={{
+							flexGrow: 1,
+							marginTop: 0,
+							padding: 1,
+
+						}}>
 							{loading && <LinearProgress color="secondary" />}
 							{data && (
-								<Grid container spacing={2} sx={{ padding: 1 }}>
+								<Grid container spacing={2} sx={{
+									padding: 1,
+									display: { xs: 'flex' },
+									flexDirection: { xs: 'column', lg: 'row', md: 'row', sm: 'row' },
+									flexWrap: { xs: 'nowrap', lg: 'wrap', md: 'wrap', sm: 'wrap' },
+									alignItems: { xs: 'center', md: 'flex-start', sm: 'flex-start', lg: 'flex-start' },
+								}}>
 									{data.movies.results.map((movie) => (
 										<Grid
 											key={movie.id}
-											item xs={12}
+											item
+											xs={12}
 											sm={6}
 											md={4}
 											lg={3}

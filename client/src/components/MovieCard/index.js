@@ -49,7 +49,7 @@ const MovieCard = ({ movie, onCardSelect, isPreviewMode }) => {
 	};
 
 	return (
-		<Card sx={{ maxWidth: 250, position: "relative" }}>
+		<Card sx={{ width: { lg: 180, md: 180, sm: 180, xs: 200 }, position: "relative" }}>
 			<Box
 				onMouseEnter={handleChangeEnter}
 				onMouseLeave={handleChangeLeave}

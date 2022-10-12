@@ -47,7 +47,7 @@ const MovieCardSelected = ({ movie, onCardDelete }) => {
 						color="text.secondary"
 						component="div"
 						sx={{ fontSize: 14 }}>
-						<FormattedMessage id='length' /> : {movie.voteCount}
+						<FormattedMessage id='popularity' /> : {movie.voteCount}
 					</Typography>
 				</Box>
 				<CardMenu>

@@ -16,21 +16,22 @@ const Recommend = () => {
 		}
 	});
 
-	if (loading) {
-		{ loading && <LinearProgress color="secondary" /> }
-	}
 
-	if (error) {
-		<div>Error. Try again!</div>
-	}
+
 
 
 	return (
 		<>
-			<Typography variant="h1" component="h1" gutterBottom>
-				{searchParams.get('title')}
-			</Typography>
 
+			<Typography
+				variant="h5"
+				component="h1"
+				gutterBottom
+				sx={{ textAlign: 'center', padding: 1 }}
+			>
+				~ {searchParams.get('title')} ~
+			</Typography>
+			{loading && <LinearProgress color="secondary" />}
 			{data?.moviesByIds && (
 				<Grid container spacing={2}>
 					{data.moviesByIds.map((movie) => (

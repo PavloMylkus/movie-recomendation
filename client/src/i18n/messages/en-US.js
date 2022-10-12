@@ -11,6 +11,6 @@ export default {
 		copied: 'Copied!',
 		select: 'Select',
 		delete: 'Delete',
-		length: 'Length'
+		popularity: 'Popularity'
 	}
 };

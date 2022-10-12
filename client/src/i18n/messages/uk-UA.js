@@ -11,6 +11,6 @@ export default {
 		copied: 'Скопійовано!',
 		select: 'Вибрати',
 		delete: 'Видалити',
-		length: 'Тривалість'
+		popularity: 'Популярність'
 	},
 };
