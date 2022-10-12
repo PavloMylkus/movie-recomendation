@@ -16,10 +16,6 @@ const Recommend = () => {
 		}
 	});
 
-
-
-
-
 	return (
 		<>
 
