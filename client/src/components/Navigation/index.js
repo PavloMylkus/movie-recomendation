@@ -76,7 +76,7 @@ const Navigation = () => {
 							<SettingsIcon />
 						</ListItemIcon>
 						<ListItemText>
-							<FormattedMessage id="copied" />
+							<FormattedMessage id="navigation.settings" />
 						</ListItemText>
 					</ListItem>
 				</Link>
