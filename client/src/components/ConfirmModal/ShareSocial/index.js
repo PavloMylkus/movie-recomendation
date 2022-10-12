@@ -15,12 +15,13 @@ import {
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { SIZE_SOCIAL_ICON } from '../../../const';
+import { FormattedMessage } from 'react-intl';
 
 const ShareSocial = ({ url }) => {
 	return (
 		<Box sx={{ marginTop: 1 }}>
 			<Typography id="Share" variant="h6" component="h3" sx={{ textAlign: 'center', fontSize: 19 }}>
-				Share to friends
+				<FormattedMessage id='share_with_friends' />
 			</Typography>
 			<Box sx={{ display: 'flex', justifyContent: 'space-evenly', marginTop: 1 }}>
 				<FacebookShareButton

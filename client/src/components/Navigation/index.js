@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useCallback } from 'react';
 import {
 	AppBar,
 	Box,
@@ -21,13 +21,24 @@ import { teal } from '@mui/material/colors';
 import { I18nProvider, LOCALES } from '../../i18n';
 import translate from '../../i18n/translate';
 import ButtonGroup from '@mui/material/ButtonGroup';
+import { AppContext } from '../../context/appContext';
+import { FormattedMessage } from 'react-intl';
 const primary = teal[900];
 
 
 
 const Navigation = () => {
 	const [isDrawerOpen, setDrawerOpen] = useState(false);
-	const [locale, setLocale] = useState(LOCALES.ENGLISH);
+
+
+	const { state, dispatch } = useContext(AppContext);
+
+	const setLanguage = useCallback((locale) => {
+		dispatch({
+			type: 'setLocale',
+			locale
+		})
+	}, []);
 
 	const SwitchLanguage = () => (
 		<ButtonGroup
@@ -38,18 +49,19 @@ const Navigation = () => {
 			aria-label="Disabled elevation buttons"
 		>
 			<Button
-				onClick={() => setLocale(LOCALES.UKRAINIAN)}>
+				disabled={state.locale === LOCALES.UKRAINIAN}
+				onClick={() => setLanguage(LOCALES.UKRAINIAN)}>
 				UA
 			</Button>
 			<Button
-				onClick={() => setLocale(LOCALES.ENGLISH)}>
+				disabled={state.locale === LOCALES.ENGLISH}
+				onClick={() => setLanguage(LOCALES.ENGLISH)}>
 				EN
 			</Button>
 		</ButtonGroup>
 	)
 
 	const list = () => (
-
 		<Box
 			sx={{ width: 250 }}
 			role="presentation"
@@ -64,11 +76,9 @@ const Navigation = () => {
 							<SettingsIcon />
 						</ListItemIcon>
 						<ListItemText>
-							{translate('settings')}
+							<FormattedMessage id="copied" />
 						</ListItemText>
 					</ListItem>
-
-
 				</Link>
 				<ListItem>
 					{SwitchLanguage()}
@@ -78,62 +88,62 @@ const Navigation = () => {
 
 	);
 	return (
-		<I18nProvider locale={locale}>
-			<Box >
-				<AppBar
-					position="static"
-					sx={{ background: primary }}>
-					<Toolbar>
-						<Hidden only={['lg', 'xl']}>
-							<IconButton
-								size="large"
-								edge="start"
-								color="inherit"
-								aria-label="menu"
-								sx={{ mr: 2 }}
-								onClick={() => setDrawerOpen(true)}
-							>
-								<MenuIcon />
-							</IconButton>
-						</Hidden>
-						<Link
+
+		<Box >
+			<AppBar
+				position="static"
+				sx={{ background: primary }}>
+				<Toolbar>
+					<Hidden only={['lg', 'xl']}>
+						<IconButton
+							size="large"
+							edge="start"
+							color="inherit"
+							aria-label="menu"
+							sx={{ mr: 2 }}
+							onClick={() => setDrawerOpen(true)}
+						>
+							<MenuIcon />
+						</IconButton>
+					</Hidden>
+					<Link
+						component={RouterLink}
+						to='/'
+						sx={{ textDecoration: 'none' }}>
+						<Typography
+							variant="h6"
+							component="div"
+							sx={{ flexGrow: 1, color: '#fff' }}>
+							<FormattedMessage id='navigation.home' />
+						</Typography>
+					</Link>
+					<Box sx={{
+						flexGrow: 2,
+						display: { xs: 'none', lg: 'flex', justifyContent: 'flex-end' },
+						alignItems: 'center'
+					}}>
+
+						<Button
 							component={RouterLink}
-							to='/'
-							sx={{ textDecoration: 'none' }}>
-							<Typography
-								variant="h6"
-								component="div"
-								sx={{ flexGrow: 1, color: '#fff' }}>
-								{translate('logo')}
-							</Typography>
-						</Link>
-						<Box sx={{
-							flexGrow: 2,
-							display: { xs: 'none', lg: 'flex', justifyContent: 'flex-end' },
-							alignItems: 'center'
-						}}>
+							to="settings"
+							sx={{ width: '131px', my: 2, color: 'white' }}
+						>
+							<FormattedMessage id="navigation.settings" />
+						</Button>
+						{SwitchLanguage()}
+					</Box>
 
-							<Button
-								component={RouterLink}
-								to="settings"
-								sx={{ width: '131px', my: 2, color: 'white' }}
-							>
-								{translate('settings')}
-							</Button>
-							{SwitchLanguage()}
-						</Box>
+				</Toolbar>
+				<Drawer
+					anchor="left"
+					open={isDrawerOpen}
+					onClose={() => setDrawerOpen(false)}
+				>
+					{list()}
+				</Drawer>
+			</AppBar>
+		</Box>
 
-					</Toolbar>
-					<Drawer
-						anchor="left"
-						open={isDrawerOpen}
-						onClose={() => setDrawerOpen(false)}
-					>
-						{list()}
-					</Drawer>
-				</AppBar>
-			</Box>
-		</I18nProvider>
 	);
 }
 

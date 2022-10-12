@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
@@ -6,8 +5,8 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import CheckIcon from '@mui/icons-material/Check';
 import { Form, Field } from 'react-final-form';
-
-
+import { FormattedMessage } from 'react-intl';
+import translate from '../../i18n/translate';
 const SelectedMoviesForm = ({ onSubmit }) => (
 	<Form
 		validate={values => {
@@ -30,7 +29,7 @@ const SelectedMoviesForm = ({ onSubmit }) => (
 							<>
 								<InputBase
 									sx={{ ml: 1, flex: 1 }}
-									placeholder="Put the list name"
+									placeholder='Put the list name'
 									inputProps={{ 'aria-label': 'put list name' }}
 									{...input}
 								/>

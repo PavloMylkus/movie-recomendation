@@ -13,6 +13,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import MuiAlert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
 import ShareSocial from './ShareSocial';
+import { FormattedMessage } from 'react-intl';
 
 const style = {
 	position: 'absolute',
@@ -107,7 +108,7 @@ const ConfirmModal = ({ open, url, title, onClose }) => {
 						onClose={handleClose}
 						severity="success"
 						sx={{ left: 0 }} >
-						Copied!
+						<FormattedMessage id='copied' />
 					</Alert>
 				</Snackbar>
 				<ShareSocial url={url} />

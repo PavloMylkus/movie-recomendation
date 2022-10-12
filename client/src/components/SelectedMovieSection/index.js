@@ -7,6 +7,7 @@ import { MovieCardSelected, SelectedMoviesForm, ConfirmModal } from '../../compo
 
 import VideoLibraryRoundedIcon from '@mui/icons-material/VideoLibraryRounded';
 import { useState } from 'react';
+import { FormattedMessage } from 'react-intl';
 
 const SelectedMovies = styled(Paper)(({ theme }) => ({
 	backgroundColor: '#fff',
@@ -55,7 +56,7 @@ const SelectedMoviesSection = ({ selectedMovies, deleteMovie }) => {
 				<NoMovies>
 					<VideoLibraryRoundedIcon sx={{ fontSize: 60 }} />
 					<Typography variant="h5" mt={2}>
-						No selected movies
+						<FormattedMessage id='no_selected_movies' />
 					</Typography>
 				</NoMovies>
 			</SelectedMovies>

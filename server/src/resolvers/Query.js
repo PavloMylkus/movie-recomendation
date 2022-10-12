@@ -1,15 +1,15 @@
 const { getPopular, getDetails } = require('../modules/movies');
 const { Movie } = require('../modules/movies/enitities/Movie')
 
-async function movies(parent, args) {
+async function movies(parent, args, { locale }) {
 
-	const data = await getPopular(args.page);
+	const data = await getPopular(args.page, locale);
 	return data;
 }
 
 
-async function moviesByIds(parent, { ids }) {
-	const requests = ids.map((id) => getDetails(id));
+async function moviesByIds(parent, { ids }, { locale }) {
+	const requests = ids.map((id) => getDetails(id, locale));
 	const data = await Promise.all(requests);
 	const movies = data.map(({ data }) => new Movie(data))
 

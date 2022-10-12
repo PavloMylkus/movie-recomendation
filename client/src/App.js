@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
-	BrowserRouter,
 	Routes,
 	Route,
 } from "react-router-dom";
@@ -12,20 +11,42 @@ import {
 import {
 	ApolloClient,
 	InMemoryCache,
-	ApolloProvider
+	ApolloProvider,
+	HttpLink,
+	from,
+	ApolloLink
 } from '@apollo/client';
 import { Navigation } from './components';
-import { Home, Settings, Recommend } from './pages'
+import { Home, Settings, Recommend } from './pages';
+import { AppContext } from './context/appContext';
+import { I18nProvider, LOCALES } from './i18n';
 
 function App() {
+	const { state } = useContext(AppContext);
+	const httpLink = new HttpLink({ uri: 'http://localhost:4000/' });
+	const localeMiddleware = new ApolloLink((operation, forward) => {
+		const customHeaders = operation.getContext().hasOwnProperty("headers") ? operation.getContext().headers : {};
+
+		operation.setContext({
+			headers: {
+				...customHeaders,
+				locale: state.locale
+			}
+		});
+		return forward(operation);
+	});
+
+
 	const client = new ApolloClient({
-		uri: 'http://localhost:4000/',
+		link: from([localeMiddleware, httpLink]),
 		cache: new InMemoryCache(),
 		connectToDevTools: true
 	});
+
 	return (
-		<ApolloProvider client={client}>
-			<BrowserRouter>
+		<I18nProvider locale={state.locale}>
+			<ApolloProvider client={client}>
+
 				<CssBaseline />
 				<Navigation />
 				<Box
@@ -43,10 +64,10 @@ function App() {
 					</Container>
 				</Box>
 
-			</BrowserRouter>
 
-		</ApolloProvider>
 
+			</ApolloProvider>
+		</I18nProvider>
 	);
 }
 

@@ -9,6 +9,10 @@ const resolvers = {
 	Query
 }
 
+const context = ({ req, res }) => ({
+	locale: req?.headers?.locale || 'en-us'
+})
+
 // 3
 const server = new ApolloServer({
 	typeDefs: fs.readFileSync(
@@ -16,6 +20,7 @@ const server = new ApolloServer({
 		'utf8'
 	),
 	resolvers,
+	context
 })
 
 server

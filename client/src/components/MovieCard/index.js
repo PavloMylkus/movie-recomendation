@@ -10,7 +10,7 @@ import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOu
 import CardMenu from '../CardMenu';
 import { Box } from '@mui/system';
 import Fade from '@mui/material/Fade';
-
+import { FormattedMessage } from "react-intl";
 
 
 const CardInfo = styled(CardContent)(({ theme }) => ({
@@ -80,7 +80,7 @@ const MovieCard = ({ movie, onCardSelect, isPreviewMode }) => {
 				{!isPreviewMode && (
 					<CardMenu>
 						<MenuItem onClick={() => onCardSelect(movie)}>
-							Select
+							<FormattedMessage id='select' />
 						</MenuItem>
 					</CardMenu>)}
 
