@@ -48,75 +48,75 @@ const ConfirmModal = ({ open, url, title, onClose }) => {
 		setOpenSuccess(false);
 	};
 
-	return (<div>
-		<Modal
-
-			open={open}
-			onClose={onClose}
-			aria-labelledby="modal-modal-title"
-			aria-describedby="modal-modal-description"
-		>
-			<Box sx={style} >
-				<Typography id="modal-modal-title" variant="h6" component="h2" sx={{ textAlign: 'center' }}>
-					{title}
-				</Typography>
-				<Paper
-					component="form"
-					sx={{
-						marginTop: '24px',
-						p: '2px 4px',
-						display: 'flex',
-						alignItems: 'center',
-						width: '100%'
-					}}
-				>
-					<InputBase
-						value={url}
-						sx={{ ml: 1, flex: 1 }}
-						placeholder="List URL"
-						inputProps={{ 'aria-label': 'search google maps' }}
-					/>
-					<IconButton href={url} target='_blank' sx={{ p: '10px' }} aria-label="preview">
-						<PreviewIcon />
-					</IconButton>
-					<Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-
-					<CopyToClipboard
-
-						text={url}
-						onCopy={handleClick}>
-						<IconButton color="primary" sx={{ p: '10px' }} aria-label="copy to clipboard">
-							<ContentCopyIcon />
+	return (
+		<div>
+			<Modal
+				open={open}
+				onClose={onClose}
+				aria-labelledby="modal-modal-title"
+				aria-describedby="modal-modal-description"
+			>
+				<Box sx={style} >
+					<Typography id="modal-modal-title" variant="h6" component="h2" sx={{ textAlign: 'center' }}>
+						{title}
+					</Typography>
+					<Paper
+						component="form"
+						sx={{
+							marginTop: '24px',
+							p: '2px 4px',
+							display: 'flex',
+							alignItems: 'center',
+							width: '100%'
+						}}
+					>
+						<InputBase
+							value={url}
+							sx={{ ml: 1, flex: 1 }}
+							placeholder="List URL"
+							inputProps={{ 'aria-label': 'search google maps' }}
+						/>
+						<IconButton href={url} target='_blank' sx={{ p: '10px' }} aria-label="preview">
+							<PreviewIcon />
 						</IconButton>
-					</CopyToClipboard>
+						<Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
 
-				</Paper>
-				<Snackbar
-					open={openSuccess}
-					autoHideDuration={2000}
-					onClose={handleClose}
-					sx={{
-						position: 'relative',
-						marginTop: 2,
-						display: 'block',
-						top: 0,
+						<CopyToClipboard
 
-						left: '0px !important',
-						bottom: 0
-					}}>
-					<Alert
+							text={url}
+							onCopy={handleClick}>
+							<IconButton color="primary" sx={{ p: '10px' }} aria-label="copy to clipboard">
+								<ContentCopyIcon />
+							</IconButton>
+						</CopyToClipboard>
+
+					</Paper>
+					<Snackbar
+						open={openSuccess}
+						autoHideDuration={2000}
 						onClose={handleClose}
-						severity="success"
-						sx={{ left: 0 }} >
-						<FormattedMessage id='copied' />
-					</Alert>
-				</Snackbar>
-				<ShareSocial url={url} />
-			</Box>
+						sx={{
+							position: 'relative',
+							marginTop: 2,
+							display: 'block',
+							top: 0,
 
-		</Modal>
+							left: '0px !important',
+							bottom: 0
+						}}>
+						<Alert
+							onClose={handleClose}
+							severity="success"
+							sx={{ left: 0 }} >
+							<FormattedMessage id='copied' />
+						</Alert>
+					</Snackbar>
+					<ShareSocial url={url} />
+				</Box>
 
-	</div>
+			</Modal>
+
+		</div>
 	);
 }
 

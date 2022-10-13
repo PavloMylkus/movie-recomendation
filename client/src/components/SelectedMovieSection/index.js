@@ -41,7 +41,7 @@ const SelectedMoviesSection = ({ selectedMovies, deleteMovie }) => {
 
 	const onSubmit = ({ listName }) => {
 		const ids = selectedMovies.map(({ id }) => id);
-		const link = `${window.location.host}/recommend?title=${listName}&ids=${ids.join()}`;
+		const link = `/recommend?title=${listName}&ids=${ids.join()}`;
 
 		setLink(link);
 		setListname(listName);
