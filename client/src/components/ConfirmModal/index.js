@@ -35,7 +35,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 
 const ConfirmModal = ({ open, url, title, onClose }) => {
 	const [openSuccess, setOpenSuccess] = useState(false);
-
+	const link = `${window.location.host}${url}`;
 	const handleClick = () => {
 		setOpenSuccess(true);
 	};
@@ -71,7 +71,7 @@ const ConfirmModal = ({ open, url, title, onClose }) => {
 						}}
 					>
 						<InputBase
-							value={url}
+							value={link}
 							sx={{ ml: 1, flex: 1 }}
 							placeholder="List URL"
 							inputProps={{ 'aria-label': 'search google maps' }}
@@ -82,8 +82,7 @@ const ConfirmModal = ({ open, url, title, onClose }) => {
 						<Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
 
 						<CopyToClipboard
-
-							text={url}
+							text={link}
 							onCopy={handleClick}>
 							<IconButton color="primary" sx={{ p: '10px' }} aria-label="copy to clipboard">
 								<ContentCopyIcon />
@@ -111,7 +110,7 @@ const ConfirmModal = ({ open, url, title, onClose }) => {
 							<FormattedMessage id='copied' />
 						</Alert>
 					</Snackbar>
-					<ShareSocial url={url} />
+					<ShareSocial url={link} />
 				</Box>
 
 			</Modal>
