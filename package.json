@@ -9,12 +9,8 @@
 		"build": "cd client && npm run build",
 		"install": "cd client && npm install --legacy-peer-deps && cd ../server && npm install"
 	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/PavloMylkus/movie-recomendation.git"
-	},
 	"author": "Mylkus Pavlo",
-	"license": "ISC",
+	"license": "MIT",
 	"engines": {
 		"node": "16.x"
 	}
