@@ -13,6 +13,8 @@ import { MOVIES_QUERY } from './queries';
 import Pagination from '@mui/material/Pagination';
 import LinearProgress from '@mui/material/LinearProgress';
 import { useMovies } from '../../hooks/useMovies';
+import Filters from '../../components/Filters';
+import { useSearch } from '../../hooks/useSearch';
 
 
 
@@ -22,6 +24,7 @@ const Home = () => {
 	const [page, setPage] = useState(1);
 	const { loading, error, data } = useQuery(MOVIES_QUERY, { variables: { page } });
 	const { selectedMovies, selectMovie, deleteMovie } = useMovies();
+	const [searchingMovies, setSearchingMovies] = useState({});
 
 	if (error) {
 		return "Error"
@@ -30,6 +33,13 @@ const Home = () => {
 		setPage(page)
 	}
 
+	const onSubmit = (data) => {
+
+		console.log(data);
+		debugger
+	}
+
+
 
 	const pagesCount = data?.movies?.totalPages <= 499 ? data?.movies?.totalPages : 499;
 	return (
@@ -37,7 +47,7 @@ const Home = () => {
 			<Grid container spacing={2}>
 				<Grid item xs={12}>
 					<Paper>
-						Filter section
+						<Filters onSubmit={onSubmit} />
 					</Paper>
 				</Grid>
 				<Grid item xs={12} md={8}>
