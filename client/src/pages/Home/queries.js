@@ -1,18 +1,21 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const MOVIES_QUERY = gql`
- query Movies($page: Int){
-  movies(page: $page) {
-    page
-    totalPages
-    totalResults
-     results {
-      id
-      title
-      releaseDate(format: "dd.MM.yyyy")
-      posterPath
-	  voteCount
+query Movies($filter: MoviesFilterInput) {
+    movies(filter: $filter) {
+        page
+        totalResults
+        totalPages
+        results {
+            id
+            title
+            posterPath
+            releaseDate(format: "dd.MM.yyyy")
+			popularity
+			genres {
+              name
+            }
+        }
     }
-  } 
 }
-`;
+`
