@@ -7,7 +7,8 @@ export const YearField = () => {
 		<Field
 			name="year"
 			render={({ input }) => (
-				<TextField id="outlined-basic"
+				<TextField sx={{ marginBottom: { xs: 1 } }}
+					id="outlined-basic"
 					label={<FormattedMessage id="filters.year"></FormattedMessage>}
 					variant="outlined"
 					type="number"

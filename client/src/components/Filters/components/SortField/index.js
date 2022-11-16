@@ -14,7 +14,7 @@ export const SortField = () => {
 			render={({ input }) => (
 				<FormattedMessage id="filters.sort_by">
 					{placeholder =>
-						<FormControl sx={{ m: 1, minWidth: 120 }}>
+						<FormControl sx={{ m: { sm: 0, xs: 0, lg: 1 }, minWidth: 120 }}>
 							<InputLabel id="demo-simple-select-label">{placeholder}</InputLabel>
 							<Select
 								labelId="demo-simple-select-label"

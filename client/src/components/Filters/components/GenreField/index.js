@@ -8,11 +8,12 @@ import Select from '@mui/material/Select';
 export const GenreField = ({ data }) => {
 	return (
 		<Field
+			sx={{ marginBottom: { xs: 1 } }}
 			name="genre"
 			render={({ input }) => (
 				<FormattedMessage id="filters.genre">
 					{placeholder =>
-						<FormControl sx={{ m: 1, minWidth: 120 }}>
+						<FormControl sx={{ m: { xs: 0 }, minWidth: 120 }}>
 							<InputLabel id="demo-simple-select-label">{placeholder}</InputLabel>
 							<Select
 								labelId="demo-simple-select-label"
