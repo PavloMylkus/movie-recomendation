@@ -13,5 +13,8 @@
 	"license": "MIT",
 	"engines": {
 		"node": "16.x"
+	},
+	"devDependencies": {
+		"netlify-cli": "^12.2.9"
 	}
 }
