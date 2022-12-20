@@ -2,11 +2,8 @@ import { Field } from 'react-final-form'
 import { FormattedMessage } from "react-intl";
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
 import FormLabel from '@mui/material/FormLabel';
 
 import { SORT_DIRECTION } from '../../../../const';
